@@ -1,0 +1,337 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    
+    /* RGB versions for alpha blending */
+    --primary-rgb: 62, 116, 226;
+    --secondary-rgb: 244, 245, 246;
+    --accent-rgb: 244, 245, 246;
+    --destructive-rgb: 239, 68, 68;
+    
+    /* Gradient colors */
+    --gradient-from: 221.2 83.2% 53.3%;
+    --gradient-to: 252.2 95.2% 66.3%;
+    --gradient-via: 226.2 89.2% 59.8%;
+    
+    /* Animation durations */
+    --animation-duration-slow: 700ms;
+    --animation-duration-medium: 400ms;
+    --animation-duration-fast: 250ms;
+    
+    /* Animation curves */
+    --animation-curve-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --animation-curve-spring: cubic-bezier(0.43, 0.13, 0.23, 0.96);
+    --animation-curve-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-curve-elastic: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    --animation-curve-energetic: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    
+    /* Shadow variables */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-glow: 0 0 15px rgba(var(--primary-rgb), 0.5);
+  }
+ 
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+    
+    /* RGB versions for alpha blending in dark mode */
+    --primary-rgb: 101, 163, 255;
+    --secondary-rgb: 44, 47, 55;
+    --accent-rgb: 44, 47, 55;
+    --destructive-rgb: 220, 38, 38;
+    
+    /* Dark theme gradient colors */
+    --gradient-from: 217.2 91.2% 59.8%;
+    --gradient-to: 224.3 76.3% 65%;
+    --gradient-via: 221.2 83.2% 62.5%;
+    
+    /* Shadow variables for dark mode */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.14);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.16);
+    --shadow-glow: 0 0 15px rgba(var(--primary-rgb), 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  /* Basic animations */
+  .animation-fade-in {
+    animation: fadeIn 0.5s var(--animation-curve-smooth);
+  }
+  
+  .animation-slide-up {
+    animation: slideUp 0.5s var(--animation-curve-smooth);
+  }
+  
+  .animation-slide-down {
+    animation: slideDown 0.5s var(--animation-curve-smooth);
+  }
+  
+  .animation-slide-left {
+    animation: slideLeft 0.5s var(--animation-curve-smooth);
+  }
+  
+  .animation-slide-right {
+    animation: slideRight 0.5s var(--animation-curve-smooth);
+  }
+  
+  .animation-scale {
+    animation: scale 0.3s var(--animation-curve-bounce);
+  }
+  
+  .animation-pulse {
+    animation: pulse 2s var(--animation-curve-smooth) infinite;
+  }
+  
+  .animation-bounce {
+    animation: bounce 0.7s var(--animation-curve-bounce);
+  }
+  
+  .animation-shake {
+    animation: shake 0.5s var(--animation-curve-bounce);
+  }
+  
+  /* Micro-interactions */
+  .hover-float {
+    transition: transform 0.3s var(--animation-curve-smooth);
+  }
+  
+  .hover-float:hover {
+    transform: translateY(-4px);
+  }
+  
+  .hover-scale {
+    transition: transform 0.3s var(--animation-curve-bounce);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .hover-glow {
+    transition: box-shadow 0.3s var(--animation-curve-smooth), border-color 0.3s var(--animation-curve-smooth);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 12px 0 hsla(var(--primary), 0.4);
+    border-color: hsl(var(--primary));
+  }
+  
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-from)) 0%,
+      hsl(var(--gradient-via)) 50%,
+      hsl(var(--gradient-to)) 100%
+    );
+  }
+  
+  .bg-gradient-shimmer {
+    background: linear-gradient(
+      110deg,
+      transparent 33%,
+      hsla(var(--muted-foreground), 0.1) 50%,
+      transparent 66%
+    );
+    background-size: 300% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  /* Enhanced shadows */
+  .shadow-glow {
+    box-shadow: 0 0 20px 0 hsla(var(--primary), 0.2);
+  }
+  
+  .shadow-sharp {
+    box-shadow: 
+      0 1px 2px 0 hsla(var(--foreground), 0.05),
+      0 1px 4px 0 hsla(var(--foreground), 0.05),
+      0 2px 8px 0 hsla(var(--foreground), 0.05);
+  }
+  
+  .shadow-soft {
+    box-shadow: 
+      0 8px 16px 0 hsla(var(--foreground), 0.05),
+      0 2px 4px 0 hsla(var(--foreground), 0.05);
+  }
+  
+  .shadow-float {
+    box-shadow: 
+      0 2px 4px 0 hsla(var(--foreground), 0.05),
+      0 12px 24px 0 hsla(var(--foreground), 0.1);
+  }
+  
+  /* Theme transition */
+  .theme-transition {
+    transition: 
+      background-color 0.5s var(--animation-curve-smooth),
+      color 0.5s var(--animation-curve-smooth),
+      border-color 0.5s var(--animation-curve-smooth),
+      box-shadow 0.5s var(--animation-curve-smooth);
+  }
+  
+  /* Responsive animations */
+  @media (prefers-reduced-motion: reduce) {
+    .animation-fade-in,
+    .animation-slide-up,
+    .animation-slide-down,
+    .animation-slide-left,
+    .animation-slide-right,
+    .animation-scale,
+    .animation-pulse,
+    .animation-bounce,
+    .animation-shake,
+    .bg-gradient-shimmer {
+      animation: none !important;
+    }
+    
+    .hover-float:hover,
+    .hover-scale:hover {
+      transform: none !important;
+    }
+  }
+  
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes scale {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: 100% 0; }
+    100% { background-position: 0 0; }
+  }
+  
+  /* Staggered animations */
+  .stagger-item:nth-child(1) { animation-delay: 0ms; }
+  .stagger-item:nth-child(2) { animation-delay: 100ms; }
+  .stagger-item:nth-child(3) { animation-delay: 200ms; }
+  .stagger-item:nth-child(4) { animation-delay: 300ms; }
+  .stagger-item:nth-child(5) { animation-delay: 400ms; }
+  
+  /* Transition utilities */
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--animation-curve-smooth);
+    transition-duration: var(--animation-duration-medium);
+  }
+  
+  .transition-transform {
+    transition-property: transform;
+    transition-timing-function: var(--animation-curve-bounce);
+    transition-duration: var(--animation-duration-medium);
+  }
+  
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--animation-curve-smooth);
+    transition-duration: var(--animation-duration-fast);
+  }
+  
+  .transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: var(--animation-curve-smooth);
+    transition-duration: var(--animation-duration-fast);
+  }
+}
+
